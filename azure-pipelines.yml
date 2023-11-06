@@ -27,12 +27,12 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
-    workingDirectory: 'StorageAccount-Terraform'
+    workingDirectory: 'linux'
     backendServiceArm: 'Subscription Shidee(fc8dc059-7cef-4161-95ff-20bcc6c2ef99)'
     backendAzureRmResourceGroupName: 'remote-state'
     backendAzureRmStorageAccountName: 'terraformstateshidee95'
     backendAzureRmContainerName: 'terraform-state-container'
-    backendAzureRmKey: 'terraform.tfstate'
+    backendAzureRmKey: 'terraform.tfstate-2'
   
 
 - task: TerraformTaskV4@4
@@ -40,5 +40,5 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'apply'
-    workingDirectory: 'StorageAccount-Terraform'
+    workingDirectory: 'linux'
     environmentServiceNameAzureRM: 'Subscription Shidee(fc8dc059-7cef-4161-95ff-20bcc6c2ef99)'
