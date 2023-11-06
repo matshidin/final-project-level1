@@ -1,0 +1,44 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- task: AzureCLI@2
+  displayName: Azure CLI
+  inputs:
+    azureSubscription: 'Subscription Shidee(1)(fc8dc059-7cef-4161-95ff-20bcc6c2ef99)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az --version 
+      az account show
+
+
+- task: TerraformTaskV4@4
+  displayName: Terraform init
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: 'StorageAccount-Terraform'
+    backendServiceArm: 'Subscription Shidee(fc8dc059-7cef-4161-95ff-20bcc6c2ef99)'
+    backendAzureRmResourceGroupName: 'remote-state'
+    backendAzureRmStorageAccountName: 'terraformstateshidee95'
+    backendAzureRmContainerName: 'terraform-state-container'
+    backendAzureRmKey: 'terraform.tfstate'
+  
+
+- task: TerraformTaskV4@4
+  displayName: Terraform apply
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    workingDirectory: 'StorageAccount-Terraform'
+    environmentServiceNameAzureRM: 'Subscription Shidee(fc8dc059-7cef-4161-95ff-20bcc6c2ef99)'
