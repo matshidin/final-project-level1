@@ -4,14 +4,7 @@ provider "azurerm" {
 
 }
 
-terraform {
-  backend "azurerm" {
-    resource_group_name  = "remote-state"
-    storage_account_name = "terraformstateshidee95"
-    container_name       = "terraform-state-module"
-    key                  = "terraform.tfstate"
-  }
-}
+
 
 
 # Create linux virtual machine
