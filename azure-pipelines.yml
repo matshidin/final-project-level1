@@ -39,6 +39,6 @@ steps:
   displayName: Terraform apply
   inputs:
     provider: 'azurerm'
-    command: 'apply'
+    command: 'destroy'
     workingDirectory: 'linux'
     environmentServiceNameAzureRM: 'Subscription Shidee(fc8dc059-7cef-4161-95ff-20bcc6c2ef99)'
